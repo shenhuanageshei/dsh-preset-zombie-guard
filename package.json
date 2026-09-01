@@ -1,0 +1,48 @@
+{
+  "name": "dsh-preset-zombie-guard",
+  "version": "0.1.0",
+  "description": "Preset-zombie guard for DeepSeek Harness: periodically scans session logs (zstd frame decoding) for sessions whose effective agent preset no longer exists in the roster; auto-archives blank zombies via the official workspaceRegistry API and deduplicates warnings for non-blank ones. Ships preset_guard_check_remove (full-decode dependency audit to run before deleting any user preset) and preset_guard_last_report. Born from the 2026-08-31 preset-deletion incident. 预设僵尸守护：周期扫描会话日志识别失效预设引用；空白僵尸自动归档，非空白告警去重；删除预设前的依赖安全检查。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "types": "./lib/types/index.d.ts",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "scripts/build.sh",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shenhuanageshei/dsh-preset-zombie-guard.git"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "agent-presets",
+    "guard"
+  ],
+  "license": "BSD-3-Clause",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.0-rc <5",
+    "@deepseek-ai/dsh-tools": ">=0.0.1-rc <2",
+    "@deepseek-ai/schemastery": ">=3.18.0 <4"
+  },
+  "devDependencies": {
+    "typescript": "5.7.3"
+  },
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "selftest": "node lib/selftest.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  }
+}
