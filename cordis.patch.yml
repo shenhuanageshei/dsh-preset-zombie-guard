@@ -1,0 +1,6 @@
+# dsh-preset-zombie-guard bundle patch — applied when this package is listed in
+# a profile's dsh.profile.bundles. Mounts the zombie-guard plugin as one loader
+# entry; the plugin injects the base `timer` and `tools` services.
+- insert:
+    - id: preset-zombie-guard
+      name: 'dsh-preset-zombie-guard'
